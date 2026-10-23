@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101c25"><meta name="description" content="加拿大28本地开奖模拟器：可复核的计算过程、历史与统计。">
+  <title>长盛 · 加拿大28模拟器</title><link rel="stylesheet" href="styles.css">
+  <script defer src="game.js"></script>
+</head>
+<body>
+<main>
+  <header><a class="brand" href="./"><span class="logo">28</span><span>长盛 <small>DRAW LAB</small></span></a><span class="status"><i></i> 本地模拟 · 无真实投注</span></header>
+  <section class="intro"><div class="eyebrow">CANADA 28 / SIMULATOR</div><h1>让每一次开奖，<span>清楚可见。</span></h1><p>从20个原始号码到最终和值，完整记录每一步。</p></section>
+  <p id="notice" role="status" hidden></p>
+  <div class="layout">
+    <section class="panel result-panel" aria-labelledby="resultTitle">
+      <div class="section-head"><h2 id="resultTitle">本期模拟结果</h2><span id="drawId" class="muted">等待首次开奖</span></div>
+      <div id="result" aria-live="polite" aria-atomic="true"><div class="empty-result"><span>—</span><p>准备就绪，开始你的第一期模拟</p></div></div>
+      <details id="calculation"><summary>原始号码与计算过程 <span>展开查看</span></summary><div id="details" class="muted">开奖后显示20个号码及三组计算过程。</div></details>
+    </section>
+    <section class="panel controls" aria-labelledby="controlTitle">
+      <div class="section-head"><h2 id="controlTitle">模拟控制</h2><span class="eyebrow">01 / PLAY</span></div>
+      <div class="modes" role="group" aria-label="模拟模式"><button id="instant" aria-pressed="true">即时模拟</button><button id="timed" aria-pressed="false">定时模拟</button></div>
+      <p id="modeHint" class="muted">无需等待，点击即可生成一期结果。</p>
+      <button id="draw" class="primary">生成一期 <span>↗</span></button>
+      <div id="timer" role="status" class="timer">每期抽取20个不重复号码</div>
+      <div class="batch"><label for="batchSize">批量验证</label><div><select id="batchSize"><option value="100">100期</option><option value="1000">1,000期</option></select><button id="batch">运行模拟</button></div><small>批量结果同时计入历史与统计。</small></div>
+    </section>
+  </div>
+  <section class="stats" aria-label="模拟统计"><div class="stat"><span>已保存模拟</span><strong id="total">0</strong><small>最多保留最近10,000期</small></div><div class="stat"><span>大 / 小 占比</span><strong id="sizes">—</strong><small>大 14–27 · 小 0–13</small></div><div class="stat"><span>单 / 双 占比</span><strong id="parities">—</strong><small>按最终和值分类</small></div><div class="stat"><span>平均和值</span><strong id="average">—</strong><small>基于已保存的新版本记录</small></div></section>
+  <section class="panel distribution"><div class="section-head"><h2>和值分布 <small>0–27</small></h2><span class="muted">历史频率不代表下一期概率</span></div><div id="bars" class="bars" aria-label="各和值出现次数"></div></section>
+  <section class="panel history"><div class="section-head"><h2>开奖历史 <small id="historyCount">0条</small></h2><button id="export">导出 CSV</button></div><p class="muted">点击记录查看当期原始号码；时间统一显示为北京时间。</p><div id="history"></div><div class="pagination"><button id="prev">上一页</button><span id="pageInfo">第1 / 1页</span><button id="next">下一页</button></div><details id="legacySection" hidden><summary>旧版历史（仅展示，不计入新版统计）</summary><p class="muted">旧版使用1–99号码池且未保存原始号码，无法还原或重新校验。</p><div id="legacy"></div></details></section>
+  <section class="data-panel"><div><h2>数据管理</h2><p>所有记录仅保存在当前浏览器。清除后不可恢复；已导出的文件不受影响。</p></div><button id="clear" class="danger">彻底清除所有数据</button></section>
+  <footer><span>长盛 · DRAW LAB <b>v2.0</b></span><span>独立随机模拟，非官方实时开奖，不用于预测真实结果。</span></footer>
+  <details class="rules"><summary>规则与使用说明</summary><p>从1–80中均匀无放回抽取20个数字，升序排列。第一区取第2、5、8、11、14、17位；第二区取第3、6、9、12、15、18位；第三区取第4、7、10、13、16、19位。各组求和取个位，再相加得到0–27的结果。原始第1和第20位不参与求和。</p><p>定时模式启动时立即生成一期，此后每210秒生成一期。浏览器休眠或关闭期间不会后台开奖；返回页面后，若已到期，只补生成一期并重新计时。关闭自动模拟后可切换模式。定时状态会保存，清除数据会停止定时模拟。</p><p>数据不上传服务器。清除会移除本应用新旧版本的本地记录和计时状态，不删除同域其他网站的数据。本应用不使用Cookie、IndexedDB或Service Worker保存历史。其他设备、浏览器和已下载文件需分别清理。请勿让旧版本页面保持打开，以免旧代码再次写入数据。</p></details>
+</main>
+<dialog id="clearDialog" aria-labelledby="clearTitle"><h2 id="clearTitle">彻底清除所有数据？</h2><p>将删除当前浏览器中本应用的全部新旧开奖记录、统计与计时状态，并停止自动模拟。操作不可恢复。</p><p class="muted">不会删除其他设备或已导出的CSV文件。请先关闭仍打开的旧版页面。</p><label for="confirmText">输入“清除”以确认</label><input id="confirmText" autocomplete="off" placeholder="清除"><div class="dialog-actions"><button id="cancelClear" autofocus>取消</button><button id="confirmClear" class="danger" disabled>永久清除</button></div></dialog>
+</body></html>
